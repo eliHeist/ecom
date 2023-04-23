@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+<div class="container">
+   <form class="form-control m-auto" method="post" enctype="multipart/form-data">
+      <div class="mb-5 mt-3 display-6">
+         Add a new product
+      </div>
+      {% csrf_token %}
+      {{ form|crispy }}
+      <input type="submit" value="Create" class="btn btn-primary">
+   </form>
+</div>
+{% endblock content %}

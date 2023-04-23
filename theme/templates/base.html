@@ -1,0 +1,21 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Django Tailwind</title>
+		{% tailwind_css %}
+		<link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+	</head>
+
+	<body class="bg-gray-50 font-body overflow-x-hidden w-screen">
+		{% include 'base_components/nav.html' %}	
+		<div>
+			{% block content %}{% endblock content %}
+		</div>
+		{% include 'base_components/footer.html' %}
+		{% block scripts %}{% endblock scripts %}
+	</body>
+</html>

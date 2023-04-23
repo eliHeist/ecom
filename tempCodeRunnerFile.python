@@ -1,0 +1,14 @@
+
+price = str(500000000)
+
+counter = 0
+formated_price = ''
+print(price[-1:1])
+for letter in price[-1:0]:
+   print(letter)
+   counter +=1
+   formated_price = letter+formated_price
+   if counter%3 == 0:
+         formated_price = ','+formated_price
+
+print(formated_price)

@@ -1,0 +1,121 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block content %}
+<main>
+   <div class="mx-auto max-w-4xl px-2 py-16">
+      <div class="mb-10 md:mb-16">
+         <h1 class="font-bold text-3xl md:text-3xl xl:text-4xl mb-4">Sizing Help</h1>
+         <p class="mb-4">
+            Need some personalized&nbsp;sizing or fit&nbsp;help? Our&nbsp;stylists usually respond within 24 hours. If you need immediate help, don't hesitate to call us at
+            <a class="link" href="tel:773-303-6006" target="_blank">+256 (773) 303-6006</a>. We're around from 9am to 7pm Mon-Fri.
+         </p>
+         <p class="mb-4">
+            In the meantime, feel free to check out our&nbsp;<a class="link" href="https://suitshop.com/fit-guide/">Fit Guide</a>!
+         </p>
+      </div>
+      <form class="grid grid-cols-12 gap-4">
+         <div class="col-span-6">
+            <label class="text-sm font-medium mb-1.5 block" for="name">Name*</label>
+            <input name="name" placeholder="Name" type="text" class="w-full rounded-sm px-4 py-2.5" />
+         </div>
+         <div class="col-span-6">
+            <label class="text-sm font-medium mb-1.5 block" for="email">Email*</label>
+            <input name="email" placeholder="example@mail.com" type="email" class="w-full rounded-sm px-4 py-2.5" />
+         </div>
+         <div class="col-span-6 md:col-span-4">
+            <label class="text-sm font-medium mb-1.5 block" for="chest">Chest*</label>
+            <select name="chest" title="Chest size" class="appearance-none w-full rounded-sm px-4 py-2.5">
+               <option value="">—</option>
+               <option>Not sure/not listed</option>
+               <option>36"</option>
+               <option>37"</option>
+               <option>38"</option>
+               <option>39"</option>
+               <option>40"</option>
+               <option>41"</option>
+               <option>42"</option>
+               <option>43"</option>
+               <option>44"</option>
+               <option>45"</option>
+               <option>46"</option>
+               <option>47"</option>
+               <option>48"</option>
+               <option>49"</option>
+               <option>50"</option>
+            </select>
+         </div>
+         <div class="col-span-6 md:col-span-4">
+            <label class="text-sm font-medium mb-1.5 block" for="waist">Waist*</label>
+            <select name="waist" title="Waist size" class="appearance-none w-full rounded-sm px-4 py-2.5">
+               <option value="">-</option>
+               <option>Not sure/not listed</option>
+               <option>26"</option>
+               <option>27"</option>
+               <option>28"</option>
+               <option>29"</option>
+               <option>30"</option>
+               <option>31"</option>
+               <option>32"</option>
+               <option>33"</option>
+               <option>34"</option>
+               <option>35"</option>
+               <option>36"</option>
+               <option>37"</option>
+               <option>38"</option>
+               <option>39"</option>
+               <option>40"</option>
+               <option>41"</option>
+               <option>42"</option>
+               <option>43"</option>
+               <option>44"</option>
+               <option>45"</option>
+               <option>46"</option>
+               <option>47"</option>
+               <option>48"</option>
+               <option>49"</option>
+               <option>50"</option>
+            </select>
+         </div>
+         <div class="col-span-6 md:col-span-4">
+            <label class="text-sm font-medium mb-1.5 block" for="height">Height*</label>
+            <select name="height" title="Height" class="appearance-none w-full rounded-sm px-4 py-2.5">
+               <option value="">-</option>
+               <option value="Not listed">Not listed</option>
+               <option class="short">5'3"</option>
+               <option class="short">5'4"</option>
+               <option class="short">5'5"</option>
+               <option class="short">5'6"</option>
+               <option class="short">5'7"</option>
+               <option class="short">5'8"</option>
+               <option class="regular">5'9"</option>
+               <option class="regular">5'10"</option>
+               <option class="regular">5'11"</option>
+               <option class="regular">6'</option>
+               <option class="long">6'1"</option>
+               <option class="long">6'2"</option>
+               <option class="long">6'3"</option>
+               <option class="long">6'4"</option>
+               <option class="long">6'5"</option>
+            </select>
+         </div>
+         <div class="col-span-6 md:col-span-6">
+            <label class="text-sm font-medium mb-1.5 block" for="weight">Weight*</label>
+            <input name="weight" type="text" class="w-full rounded-sm px-4 py-2.5" placeholder="68 kg"/>
+         </div>
+         <div class="col-span-12 md:col-span-6">
+            <label class="text-sm font-medium mb-1.5 block" for="pant-size">Pant Size*</label>
+            <input
+               name="pant-size" type="text" class="w-full rounded-sm px-4 py-2.5" placeholder='37"'
+               value="" />
+         </div>
+         <div class="col-span-12">
+            <label class="text-sm font-medium mb-1.5 block" for="body">Message*</label>
+            <textarea title="Body" name="body" class="w-full rounded-sm px-4 py-2.5" rows="10"></textarea>
+         </div>
+         <button type="submit"
+            class="col-span-12 w-full px-4 pt-4 pb-2.5 rounded-sm bg-black hover:bg-grey-800 text-white transition-colors font-medium">Send
+            Message</button>
+      </form>
+   </div>
+</main>
+{% endblock content %}

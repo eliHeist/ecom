@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section title="banner">
+   <div class="container mx-auto">
+      <div class="grid sm:grid-cols-2">
+         <figure>
+            <img src="{% static 'assets/banner-pic.jpg' %}" alt="blazor">
+         </figure>
+         <main title="banner description" class="grid content-center pl-2">
+            <div class="pl-8 border-l-black border-l-4 uppercase font-medium">
+               Traditional Print Blazor
+            </div>
+            <h2 class="sm:text-6xl text-5xl uppercase my-8">effortlessly <span class="font-bold">portable</span></h2>
+            <a title="Open Shop" href="{% url 'shop:product-list' %}"
+               class="uppercase bg-black text-white font-semibold w-fit px-8 py-4">shop now</a>
+         </main>
+      </div>
+   </div>
+</section>
+<section title="benefits" class="bg-white py-16">
+   <div class="container mx-auto px-2">
+      <main class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+         <article class="py-8 px-12 xl:px-16 border-2 border-grey-300">
+            <div class="grid sm:grid-flow-col text-center sm:text-left gap-8">
+               <i class="fas fa-hands-holding text-5xl"></i>
+               <div class="grid">
+                  <h2 class="font-semibold text-lg">Convenient Delivery</h2>
+                  <p>All around Kampala</p>
+               </div>
+            </div>
+         </article>
+         <article class="py-8 px-12 xl:px-16 border-2 border-grey-300">
+            <div class="grid sm:grid-flow-col text-center sm:text-left gap-8">
+               <i class="fas fa-gift text-5xl"></i>
+               <div class="grid">
+                  <h2 class="font-semibold text-lg">Fast Payments</h2>
+                  <p>Multiple payment options</p>
+               </div>
+            </div>
+         </article>
+         <article class="py-8 px-12 xl:px-16 border-2 border-grey-300">
+            <div class="grid sm:grid-flow-col text-center sm:text-left gap-8">
+               <i class="fas fa-certificate text-5xl"></i>
+               <div class="grid">
+                  <h2 class="font-semibold text-lg">High Quality</h2>
+                  <p>Durable quality</p>
+               </div>
+            </div>
+         </article>
+      </main>
+   </div>
+</section>
+<section title="Product cartegories">
+   <div class="container mx-auto py-40">
+      <main class="grid sm:grid-rows-5 sm:grid-cols-2">
+         <article class="sm:row-span-3 p-4 bg-blue-200"></article>
+         <article class="sm:row-span-2 p-4 bg-grey-200"></article>
+         <article class="sm:row-span-3 p-4 bg-green-200"></article>
+         <article class="sm:row-span-2 p-4 bg-red-200"></article>
+      </main>
+   </div>
+</section>
+<section title="products">
+   <div class="container mx-auto px-2 py-8">
+      <main class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+         {% for product in products %}
+            <article data-name="{{ product.name }}" data-id="{{ product.pk }}" data-price="{{ product.actualPrice }}" class="h-full">
+               <figure class="aspect-1">
+                  <img src="{{ product.picture.url }}" alt="{{ product.name }}" class="w-full h-full object-cover">
+               </figure>
+               <div class="flex justify-between content-center">
+                  <div>
+                     <h3 class="font-bold text-grey-700">{{ product.name }}</h3>
+                     <p class="font-bold text-xl">{{ product.formatedPrice }} /=</p>
+                  </div>
+                  <div class="grid content-center">
+                     <a href="#">
+                        <i class="fas fa-cart-plus text-2xl"></i>
+                     </a>
+                  </div>
+               </div>
+            </article>
+         {% endfor %}
+      </main>
+   </div>
+</section>
+{% endblock content %}

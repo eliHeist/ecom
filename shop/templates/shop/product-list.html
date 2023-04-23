@@ -1,0 +1,29 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block content %}
+<section title="products">
+   <div class="container mx-auto px-2 py-8">
+      <main class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+         {% for product in products %}
+         <article data-name="{{ product.name }}" data-id="{{ product.pk }}" data-price="{{ product.actualPrice }}"
+            class="h-full">
+            <figure class="aspect-1">
+               <img src="{{ product.picture.url }}" alt="{{ product.name }}" class="w-full h-full object-cover">
+            </figure>
+            <div class="flex justify-between content-center">
+               <div class="py-2">
+                  <h3 class="font-semibold text-grey-900">{{ product.name }}</h3>
+                  <p class="font-bold text- text-grey-600">{{ product.formatedPrice }} /=</p>
+               </div>
+               <div class="grid content-center">
+                  <a href="#">
+                     <i class="fas fa-cart-plus text-2xl"></i>
+                  </a>
+               </div>
+            </div>
+         </article>
+         {% endfor %}
+      </main>
+   </div>
+</section>
+{% endblock content %}

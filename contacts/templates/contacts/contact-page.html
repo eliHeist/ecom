@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<section title="Contact details and form">
+    <div class="container mx-auto px-2">
+        <div class="mx-auto max-w-4xl bg-grey-50 py-16">
+            <h1 class="font-bold text-3xl md:text-3xl xl:text-4xl mb-4">Contact Us</h1>
+            <p class="mb-4">
+                We are known for our outstanding customer service! Our customer care team usually responds within 24 hours of receiving a message. If you need immediate help, don't hesitate to call us at <a class="link" href="tel:+2567733036006">+256 (773) 303-6006</a>. We're around from 9am to 7pm Mon-Fri and are happy to help answer your questions, modify orders, and process time-sensitive exchanges.
+            </p>
+            <p class="mb-4">
+                If you need help with sizing, please fill out our <a class="link" href="{% url 'contacts:sizing-page' %}">sizing form</a> instead. <br>Feel free to check out our Help Center as well! We may have already answered your question.
+            </p>
+            <form title="contact form" x-data="{
+            mail: {
+                name='',
+                email='',
+                reason='',
+                phone='',
+                message=''
+            },
+            uiStatus: {
+                message: '',
+                toggle: false,
+            },
+            csrf() {
+                token = document.getElementById('token').firstElementChild.value;
+                return token;
+            },
+            sendMessage() {
+                this.uiStatus.message = 'Sending...'
+                this.uiStatus.toggle = true
+                fetch(`{% url 'contacts:sendmail' %}`, {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': this.csrf(),
+                    },
+                    body: JSON.stringify(this.mail),
+                }).then((response) => response.json()).then((json) => {
+                    this.uiStatus.message = json
+                    if (this.uiStatus.message === 'SUCCESS') {
+                        this.uiStatus.message = 'Message sent ✔️'
+                        // clear fields
+                        this.mail.name = ''
+                        this.mail.email = ''
+                        this.mail.phone = ''
+                        this.mail.message = ''
+                        this.mail.reason = 'General Inquiry'
+                    }
+                    setTimeout(()=>{
+                        this.uiStatus.toggle=false
+                        this.uiStatus.message=''
+                    },3000)
+                });
+            }
+        }" @submit.prevent="sendMessage()" class="grid grid-cols-2 gap-4">
+                <div id="token" class="hidden">{% csrf_token %}</div>
+                <div class="col-span-2 sm:col-span-1 grid">
+                    <label for="form-name">Name*</label>
+                    <input class="w-full rounded-sm px-4 py-2.5 " x-model="mail.name" type="text" name="name" id="form-name" required>
+                </div>
+                <div class="col-span-2 sm:col-span-1 grid">
+                    <label for="form-email">Email*</label>
+                    <input class="w-full rounded-sm px-4 py-2.5 " x-model="mail.email" type="email" name="email" id="form-email" required>
+                </div>
+                <div class="col-span-2 sm:col-span-1 grid">
+                    <label for="form-reason">Reason</label>
+                    <select class="w-full rounded-sm px-4 py-2.5 " x-model="mail.reason" name="reason" id="form-reason" required>
+                        <option value="General Inquiry" selected>General Inquiry</option>
+                    </select>
+                </div>
+                <div class="col-span-2 sm:col-span-1 grid">
+                    <label for="form-phone">Phone</label>
+                    <input class="w-full rounded-sm px-4 py-2.5 " x-model="mail.phone" type="tel" name="phone" id="form-phone">
+                </div>
+                <div class="col-span-2 grid">
+                    <label for="form-message">Message*</label>
+                    <textarea class="w-full rounded-sm px-4 py-2.5 " x-model="mail.message" name="message" id="form-message" cols="30" rows="10"></textarea>
+                </div>
+                <button type="submit"
+                    class="col-span-2 w-full px-4 pt-4 pb-2.5 rounded-sm bg-black hover:bg-grey-800 text-white transition-colors font-medium">Send
+                    Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'js/alpine.js' %}"></script>
+{% endblock scripts %}
+    
