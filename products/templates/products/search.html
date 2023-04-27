@@ -1,0 +1,58 @@
+{% extends 'base.html' %}{% load static %}
+
+{% block content %}
+<section title="results">
+   <div class="container mx-auto px-2 py-8"
+      x-data="{
+         products: {},
+         matchedProducts: [],
+         search: '',
+         fetchData(){
+            fetch(`{% url 'products:product-api' %}`, {method: 'GET'})
+            .then((response) => response.json())
+            .then((json) => this.products = json)
+         },
+         filterItems(){
+            matchedList = []
+            if (search.value != ''){
+               for (product in this.products){
+                  console.log(this.products[product])
+                  if (this.products[product].name.toLowerCase().includes(this.search.toLowerCase())){
+                     console.log('match found')
+                     matchedList.push(this.products[product])
+                  }
+               }
+            }
+            this.matchedProducts = matchedList
+         }
+      }" x-init="fetchData()">
+      <form>
+         <label for="search" class="text-sm font-medium mb-1.5 block">Search</label>
+         <input x-model="search" x-init="$watch('search', value => filterItems())" type="text" name="search" id="search"
+            class="w-full rounded-sm px-4 py-2.5">
+      </form>
+      <main class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+         <template x-for="product in matchedProducts">
+            <article x-transition :title="product.name" class="h-full">
+               <a x-bind:href="'/products/' + product.pk">
+                  <figure class="aspect-1">
+                     <img x-bind:src="product.picture" x-bind:alt="product.name" class="w-full h-full object-cover">
+                  </figure>
+                  <div class="flex justify-between content-center">
+                     <div>
+                        <h3 class="font-bold text-grey-700" x-text="product.name"></h3>
+                        <p class="font-bold text-xl" x-text="product.price + ' /='"></p>
+                     </div>
+                     <!-- <div class="grid content-center">
+                     <a href="#">
+                        <i class="fas fa-cart-plus text-2xl"></i>
+                     </a>
+                  </div> -->
+                  </div>
+               </a>
+            </article>
+         </template>
+      </main>
+   </div>
+</section>
+{% endblock content %}
