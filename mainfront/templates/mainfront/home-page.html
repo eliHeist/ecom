@@ -1,7 +1,7 @@
 {% extends 'base.html' %}{% load static %}
 
 {% block content %}
-<section title="banner">
+<section title="banner" class="bg-white">
    <div class="container mx-auto">
       <div class="grid sm:grid-cols-2">
          <figure>
@@ -53,11 +53,43 @@
 </section>
 <section title="Product cartegories">
    <div class="container mx-auto py-40">
-      <main class="grid sm:grid-rows-5 sm:grid-cols-2">
-         <article class="sm:row-span-3 p-4 bg-blue-200"></article>
-         <article class="sm:row-span-2 p-4 bg-grey-200"></article>
-         <article class="sm:row-span-3 p-4 bg-green-200"></article>
-         <article class="sm:row-span-2 p-4 bg-red-200"></article>
+      <main class="grid md:grid-rows-5 md:grid-cols-2 gap-8">
+         <article class="md:row-span-3 bg-blue-50 rounded-sm">
+            <div class="grid grid-cols-2">
+               <img src="{% static 'assets/suite.png' %}" alt="" class=" max-h-[35rem] object-contain">
+               <div class="w-full p-4 grid content-center">
+                  <h3 class="text-3xl sm:text-5xl font-semibold">Suites</h3>
+                  <a href="{% url 'shop:product-list' %}" class="mt-4 py-2 px-4 outline outline-1 outline-black hover:bg-black hover:text-white transition-all uppercase font-medium w-fit">Shop now <i class="fas fa-arrow-right pl-2"></i></a>
+               </div>
+            </div>
+         </article>
+         <article class="md:row-span-2 bg-amber-50 rounded-sm">
+            <div class="grid grid-cols-2 h-full">
+               <img src="{% static 'assets/shoes.png' %}" alt="" class="mt-auto max-h-[30rem] object-contain">
+               <div class="w-full p-4 grid content-center">
+                  <h3 class="text-3xl sm:text-5xl font-semibold">Shoes</h3>
+                  <a href="{% url 'shop:product-list' %}" class="mt-4 py-2 px-4 outline outline-1 outline-black hover:bg-black hover:text-white transition-all uppercase font-medium w-fit">Shop now <i class="fas fa-arrow-right pl-2"></i></a>
+               </div>
+            </div>
+         </article>
+         <article class="md:row-span-3 bg-grey-100 rounded-sm">
+            <div class="grid grid-cols-2 h-full">
+               <img src="{% static 'assets/jacket.png' %}" alt="" class="mt-auto max-h-[40rem] object-contain">
+               <div class="w-full p-4 grid content-center">
+                  <h3 class="text-3xl sm:text-5xl font-semibold">Jackets</h3>
+                  <a href="{% url 'shop:product-list' %}" class="mt-4 py-2 px-4 outline outline-1 outline-black hover:bg-black hover:text-white transition-all uppercase font-medium w-fit">Shop now <i class="fas fa-arrow-right pl-2"></i></a>
+               </div>
+            </div>
+         </article>
+         <article class="md:row-span-2 bg-white rounded-sm">
+            <div class="grid h-full">
+               <img src="{% static 'assets/accesories.jpeg' %}" alt="" class="mt-auto max-h-[10rem] object-contain mx-auto">
+               <div class="w-fit mx-auto p-4 grid grid-flow-col gap-4 content-center">
+                  <h3 class="text-3xl sm:text-5xl font-semibold">Accesories</h3>
+                  <a href="{% url 'shop:product-list' %}" class="py-2 px-4 h-fit my-auto outline outline-1 outline-black hover:bg-black hover:text-white transition-all uppercase font-medium w-fit">Shop now <i class="fas fa-arrow-right pl-2"></i></a>
+               </div>
+            </div>
+         </article>
       </main>
    </div>
 </section>
